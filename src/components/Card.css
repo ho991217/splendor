@@ -1,0 +1,37 @@
+.card {
+  width: 120px;
+  height: 160px;
+  background-image: url("../images/cards.jpg");
+  background-size: 500% 600%;
+}
+
+.back_1 {
+  background-position: 0% -500%;
+}
+
+.back_2 {
+  background-position: -100% -500%;
+}
+
+.back_3 {
+  background-position: -200% -500%;
+}
+
+.type_R {
+  background-position-y: -200%;
+}
+
+.type_E {
+  background-position-y: -300%;
+}
+
+.type_R {
+  background-position-y: -200%;
+}
+
+.type_R {
+  background-position-y: -200%;
+}
+.type_R {
+  background-position-y: -200%;
+}
