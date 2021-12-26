@@ -18,7 +18,15 @@ const Container = styled.div`
 `;
 
 const Nobles = styled.div`
-  display: flex;
+  display: gird;
+  right: 0;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    "top top"
+    "one two"
+    "three four";
+  position: absolute;
 `;
 
 const Cards = styled.div`
@@ -46,10 +54,15 @@ const Row = styled.div`
   }
 `;
 
+const CardCounter = styled.span``;
+
 function Playmat() {
   const [tier1, setTier1] = useState([]);
+  const [show1, setShow1] = useState(false);
   const [tier2, setTier2] = useState([]);
+  const [show2, setShow2] = useState(false);
   const [tier3, setTier3] = useState([]);
+  const [show3, setShow3] = useState(false);
   const [nobles, setNobles] = useState([]);
 
   function shuffle(a) {
@@ -1406,31 +1419,62 @@ function Playmat() {
     }
   }, [tier3.length]);
 
-  const onClick = () => {
-    const location = window.location;
-    location.reload(0);
-  };
-
   return (
     <>
       <Container className="mainContainer">
         <Cards>
           <Row id="row_1">
-            {CardTier1.length > 0 ? <Back className="card back_1" /> : null}
+            {CardTier1.length > 0 ? (
+              <Back
+                className="card back_1"
+                onMouseEnter={() => {
+                  setShow1(true);
+                }}
+                onMouseLeave={() => {
+                  setShow1(false);
+                }}
+              >
+                {show1 ? <CardCounter>{CardTier1.length}</CardCounter> : null}
+              </Back>
+            ) : null}
             {tier1[0] ? <Card object={tier1[0]} /> : null}
             {tier1[1] ? <Card object={tier1[1]} /> : null}
             {tier1[2] ? <Card object={tier1[2]} /> : null}
             {tier1[3] ? <Card object={tier1[3]} /> : null}
           </Row>
           <Row id="row_2">
-            {CardTier2.length > 0 ? <Back className="card back_2" /> : null}
+            {CardTier2.length > 0 ? (
+              <Back
+                className="card back_2"
+                onMouseEnter={() => {
+                  setShow2(true);
+                }}
+                onMouseLeave={() => {
+                  setShow2(false);
+                }}
+              >
+                {show2 ? <CardCounter>{CardTier2.length}</CardCounter> : null}
+              </Back>
+            ) : null}
             {tier2[0] ? <Card object={tier2[0]} /> : null}
             {tier2[1] ? <Card object={tier2[1]} /> : null}
             {tier2[2] ? <Card object={tier2[2]} /> : null}
             {tier2[3] ? <Card object={tier2[3]} /> : null}
           </Row>
           <Row id="row_3">
-            {CardTier3.length > 0 ? <Back className="card back_3" /> : null}
+            {CardTier3.length > 0 ? (
+              <Back
+                className="card back_3"
+                onMouseEnter={() => {
+                  setShow3(true);
+                }}
+                onMouseLeave={() => {
+                  setShow3(false);
+                }}
+              >
+                {show3 ? <CardCounter>{CardTier3.length}</CardCounter> : null}
+              </Back>
+            ) : null}
             {tier3[0] ? <Card object={tier3[0]} /> : null}
             {tier3[1] ? <Card object={tier3[1]} /> : null}
             {tier3[2] ? <Card object={tier3[2]} /> : null}
