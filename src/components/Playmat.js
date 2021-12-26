@@ -64,6 +64,9 @@ function Playmat() {
   const [tier3, setTier3] = useState([]);
   const [show3, setShow3] = useState(false);
   const [nobles, setNobles] = useState([]);
+  const [CardTier1, setCardTier1] = useState([]);
+  const [CardTier2, setCardTier2] = useState([]);
+  const [CardTier3, setCardTier3] = useState([]);
 
   function shuffle(a) {
     var j, x, i;
@@ -1363,22 +1366,20 @@ function Playmat() {
     },
   ];
 
-  const CardTier1 = [];
-  const CardTier2 = [];
-  const CardTier3 = [];
-  CardSet.forEach((el) => {
-    if (el.Tier === 1) {
-      CardTier1.push(el);
-    } else if (el.Tier === 2) {
-      CardTier2.push(el);
-    } else if (el.Tier === 3) {
-      CardTier3.push(el);
-    }
-  });
   useEffect(() => {
+    CardSet.forEach((el) => {
+      if (el.Tier === 1) {
+        setCardTier1((cur) => [...cur, el]);
+      } else if (el.Tier === 2) {
+        setCardTier2((cur) => [...cur, el]);
+      } else if (el.Tier === 3) {
+        setCardTier3((cur) => [...cur, el]);
+      }
+    });
     shuffle(CardTier1);
     shuffle(CardTier2);
     shuffle(CardTier3);
+    console.log(CardTier1);
     setTier1([
       CardTier1.pop(),
       CardTier1.pop(),
@@ -1403,7 +1404,9 @@ function Playmat() {
 
   useEffect(() => {
     if (tier1.length < 4 && CardTier1.length > 0) {
-      setTier1((cur) => [...cur, CardTier1.pop()]);
+      const tmp = CardTier1[-1];
+      setCardTier1((cur) => cur.pop());
+      setTier1((cur) => [...cur, tmp]);
     }
   }, [tier1.length]);
 
@@ -1419,9 +1422,14 @@ function Playmat() {
     }
   }, [tier3.length]);
 
+  const checkTier1 = () => {
+    console.log(CardTier1);
+  };
+
   return (
     <>
       <Container className="mainContainer">
+        <button onClick={checkTier1}></button>
         <Cards>
           <Row id="row_1">
             {CardTier1.length > 0 ? (
