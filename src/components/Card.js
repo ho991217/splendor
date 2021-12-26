@@ -28,8 +28,15 @@ const Point = styled.div``;
 
 const Gem = styled.div``;
 
+const Costs = styled.div`
+  grid-area: body;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 2px 5px;
+`;
 const Cost = styled.div`
-  grid-area: cost;
+  margin: 2px 0px;
 `;
 
 export default function Card(props) {
@@ -39,15 +46,52 @@ export default function Card(props) {
 
   return (
     <Container
-      className={
-        "card" + " type_" + props.object.Color + " " + props.object.Img
-      }
+      className={"card type_" + props.object.Color + " " + props.object.Img}
     >
       <Header>
-        <Point className="point"></Point>
-        <Gem className={"gem " + "gem_" + props.object.Color}></Gem>
+        {props.object.Points > 0 ? (
+          <Point className={"point score point_" + props.object.Points}></Point>
+        ) : null}
+        <Gem className={"gem gem_" + props.object.Color}></Gem>
       </Header>
-      <Cost></Cost>
+
+      <Costs>
+        {props.object.Cost.White > 0 ? (
+          <Cost className={"cost cost_White"}>
+            <Point
+              className={"point price point_" + props.object.Cost.White}
+            ></Point>
+          </Cost>
+        ) : null}
+        {props.object.Cost.Green > 0 ? (
+          <Cost className={"cost cost_Green"}>
+            <Point
+              className={"point price point_" + props.object.Cost.Green}
+            ></Point>
+          </Cost>
+        ) : null}
+        {props.object.Cost.Red > 0 ? (
+          <Cost className={"cost cost_Red"}>
+            <Point
+              className={"point price point_" + props.object.Cost.Red}
+            ></Point>
+          </Cost>
+        ) : null}
+        {props.object.Cost.Blue > 0 ? (
+          <Cost className={"cost cost_Blue"}>
+            <Point
+              className={"point price point_" + props.object.Cost.Blue}
+            ></Point>
+          </Cost>
+        ) : null}
+        {props.object.Cost.Black > 0 ? (
+          <Cost className={"cost cost_Black"}>
+            <Point
+              className={"point price point_" + props.object.Cost.Black}
+            ></Point>
+          </Cost>
+        ) : null}
+      </Costs>
     </Container>
   );
 }

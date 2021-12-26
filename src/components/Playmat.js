@@ -2,36 +2,56 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Card from "./Card";
 import "./Card.css";
+import Noble from "./Noble";
 
 const Container = styled.div`
-  transform: rotateX(10deg) translateZ(-100px);
+  // transform: rotateX(10deg) translateZ(-100px);
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 1280px;
+  max-height: 720px;
+  min-width: 1280px;
+  min-height: 720px;
 `;
 
 const Nobles = styled.div`
   display: flex;
 `;
 
-const Noble = styled.div`
-  width: 120px;
-  height: 120px;
-  background-color: ${(props) => props.color};
-`;
-
 const Cards = styled.div`
   display: flex;
   flex-direction: column-reverse;
+  position: absolute;
+  top: 45px;
+  left: 140px;
+  transform: scale(1.1);
 `;
 
-const Back = styled.div``;
+const Back = styled.div`
+  margin-right: 20px;
+  min-width: 120px;
+  min-height: 160px;
+`;
 
 const Row = styled.div`
   display: flex;
+  > div {
+    &:hover {
+      transform: Scale(1.2);
+    }
+    transition: transform 0.15s ease-in-out;
+  }
 `;
 
 function Playmat() {
   const [tier1, setTier1] = useState([]);
   const [tier2, setTier2] = useState([]);
   const [tier3, setTier3] = useState([]);
+  const [nobles, setNobles] = useState([]);
+
   function shuffle(a) {
     var j, x, i;
     for (i = a.length; i; i -= 1) {
@@ -1215,6 +1235,121 @@ function Playmat() {
       },
     },
   ];
+
+  const NobleSet = [
+    {
+      img_line: 1,
+      score: 3,
+      cost: {
+        Black: 0,
+        Red: 4,
+        Blue: 0,
+        White: 0,
+        Green: 4,
+      },
+    },
+    {
+      img_line: 1,
+      score: 3,
+      cost: {
+        Black: 0,
+        Red: 0,
+        Blue: 4,
+        White: 0,
+        Green: 4,
+      },
+    },
+    {
+      img_line: 1,
+      score: 3,
+      cost: {
+        Black: 0,
+        Red: 0,
+        Blue: 4,
+        White: 4,
+        Green: 0,
+      },
+    },
+
+    {
+      img_line: 1,
+      score: 3,
+      cost: {
+        Black: 4,
+        Red: 0,
+        Blue: 0,
+        White: 4,
+        Green: 0,
+      },
+    },
+    {
+      img_line: 1,
+      score: 3,
+      cost: {
+        Black: 4,
+        Red: 4,
+        Blue: 0,
+        White: 0,
+        Green: 0,
+      },
+    },
+    {
+      img_line: 2,
+      score: 3,
+      cost: {
+        Black: 3,
+        Red: 0,
+        Blue: 3,
+        White: 0,
+        Green: 3,
+      },
+    },
+    {
+      img_line: 2,
+      score: 3,
+      cost: {
+        Black: 3,
+        Red: 3,
+        Blue: 0,
+        White: 0,
+        Green: 3,
+      },
+    },
+    {
+      img_line: 2,
+      score: 3,
+      cost: {
+        Black: 3,
+        Red: 3,
+        Blue: 0,
+        White: 3,
+        Green: 0,
+      },
+    },
+    {
+      img_line: 2,
+      score: 3,
+      cost: {
+        Black: 0,
+        Red: 3,
+        Blue: 3,
+        White: 0,
+        Green: 3,
+      },
+    },
+    {
+      img_line: 2,
+      score: 3,
+      cost: {
+        Black: 0,
+        Red: 0,
+        Blue: 3,
+        White: 3,
+        Green: 3,
+      },
+    },
+  ];
+
   const CardTier1 = [];
   const CardTier2 = [];
   const CardTier3 = [];
@@ -1249,6 +1384,8 @@ function Playmat() {
       CardTier3.pop(),
       CardTier3.pop(),
     ]);
+    shuffle(NobleSet);
+    setNobles([NobleSet.pop(), NobleSet.pop(), NobleSet.pop()]);
   }, []);
 
   useEffect(() => {
@@ -1269,14 +1406,14 @@ function Playmat() {
     }
   }, [tier3.length]);
 
+  const onClick = () => {
+    const location = window.location;
+    location.reload(0);
+  };
+
   return (
     <>
-      <Container>
-        <Nobles>
-          <Noble color="red" />
-          <Noble color="green" />
-          <Noble color="blue" />
-        </Nobles>
+      <Container className="mainContainer">
         <Cards>
           <Row id="row_1">
             {CardTier1.length > 0 ? <Back className="card back_1" /> : null}
@@ -1300,6 +1437,13 @@ function Playmat() {
             {tier3[3] ? <Card object={tier3[3]} /> : null}
           </Row>
         </Cards>
+        <Nobles>
+          {nobles[0] ? <Noble object={nobles[0]} /> : null}
+          {nobles[1] ? <Noble object={nobles[1]} /> : null}
+          {nobles[2] ? <Noble object={nobles[2]} /> : null}
+          {nobles[3] ? <Noble object={nobles[3]} /> : null}
+          {nobles[4] ? <Noble object={nobles[3]} /> : null}
+        </Nobles>
       </Container>
     </>
   );
