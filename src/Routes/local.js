@@ -3,6 +3,8 @@ import Playmat from "../components/Playmat";
 
 const Container = styled.div`
   background-color: grey;
+  perspective: 1000px;
+  height: 100vh;
 `;
 
 function Local() {

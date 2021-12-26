@@ -1,9 +1,11 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
+import Card from "./Card";
 import "./Card.css";
 
-const Container = styled.div``;
+const Container = styled.div`
+  transform: rotateX(10deg) translateZ(-100px);
+`;
 
 const Nobles = styled.div`
   display: flex;
@@ -18,27 +20,33 @@ const Noble = styled.div`
 const Cards = styled.div`
   display: flex;
   flex-direction: column-reverse;
-  background-color: whitesmoke;
 `;
 
-const Header = styled.div``;
+const Back = styled.div``;
 
 const Row = styled.div`
   display: flex;
 `;
 
-const Card = styled.div``;
-
 function Playmat() {
-  const [topTier1, setTopTier1] = useState({});
-  const [topTier2, setTopTier2] = useState({});
-  const [topTier3, setTopTier3] = useState({});
-  const [tier1Count, setTier1Count] = useState(0);
-  const [tier2Count, setTier2Count] = useState(0);
-  const [tier3Count, setTier3Count] = useState(0);
+  const [tier1, setTier1] = useState([]);
+  const [tier2, setTier2] = useState([]);
+  const [tier3, setTier3] = useState([]);
+  function shuffle(a) {
+    var j, x, i;
+    for (i = a.length; i; i -= 1) {
+      j = Math.floor(Math.random() * i);
+      x = a[i - 1];
+      a[i - 1] = a[j];
+      a[j] = x;
+    }
+    return a;
+  }
+
   const CardSet = [
     {
       Color: "Black",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -51,6 +59,7 @@ function Playmat() {
     },
     {
       Color: "Black",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -63,6 +72,7 @@ function Playmat() {
     },
     {
       Color: "Black",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -75,6 +85,7 @@ function Playmat() {
     },
     {
       Color: "Black",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -87,6 +98,7 @@ function Playmat() {
     },
     {
       Color: "Black",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -99,6 +111,7 @@ function Playmat() {
     },
     {
       Color: "Black",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -111,6 +124,7 @@ function Playmat() {
     },
     {
       Color: "Black",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -123,6 +137,7 @@ function Playmat() {
     },
     {
       Color: "Black",
+      Img: "card_img1",
       Points: 1,
       Tier: 1,
       Cost: {
@@ -135,6 +150,7 @@ function Playmat() {
     },
     {
       Color: "Black",
+      Img: "card_img2",
       Points: 1,
       Tier: 2,
       Cost: {
@@ -147,6 +163,7 @@ function Playmat() {
     },
     {
       Color: "Black",
+      Img: "card_img2",
       Points: 1,
       Tier: 2,
       Cost: {
@@ -159,6 +176,7 @@ function Playmat() {
     },
     {
       Color: "Black",
+      Img: "card_img2",
       Points: 2,
       Tier: 2,
       Cost: {
@@ -171,6 +189,7 @@ function Playmat() {
     },
     {
       Color: "Black",
+      Img: "card_img3",
       Points: 2,
       Tier: 2,
       Cost: {
@@ -183,6 +202,7 @@ function Playmat() {
     },
     {
       Color: "Black",
+      Img: "card_img3",
       Points: 2,
       Tier: 2,
       Cost: {
@@ -195,6 +215,7 @@ function Playmat() {
     },
     {
       Color: "Black",
+      Img: "card_img3",
       Points: 3,
       Tier: 2,
       Cost: {
@@ -207,6 +228,7 @@ function Playmat() {
     },
     {
       Color: "Black",
+      Img: "card_img4",
       Points: 3,
       Tier: 3,
       Cost: {
@@ -219,6 +241,7 @@ function Playmat() {
     },
     {
       Color: "Black",
+      Img: "card_img5",
       Points: 4,
       Tier: 3,
       Cost: {
@@ -231,6 +254,7 @@ function Playmat() {
     },
     {
       Color: "Black",
+      Img: "card_img5",
       Points: 4,
       Tier: 3,
       Cost: {
@@ -243,6 +267,7 @@ function Playmat() {
     },
     {
       Color: "Black",
+      Img: "card_img4",
       Points: 5,
       Tier: 3,
       Cost: {
@@ -255,6 +280,7 @@ function Playmat() {
     },
     {
       Color: "Blue",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -267,6 +293,7 @@ function Playmat() {
     },
     {
       Color: "Blue",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -279,6 +306,7 @@ function Playmat() {
     },
     {
       Color: "Blue",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -291,6 +319,7 @@ function Playmat() {
     },
     {
       Color: "Blue",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -303,6 +332,7 @@ function Playmat() {
     },
     {
       Color: "Blue",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -315,6 +345,7 @@ function Playmat() {
     },
     {
       Color: "Blue",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -327,6 +358,7 @@ function Playmat() {
     },
     {
       Color: "Blue",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -339,6 +371,7 @@ function Playmat() {
     },
     {
       Color: "Blue",
+      Img: "card_img1",
       Points: 1,
       Tier: 1,
       Cost: {
@@ -351,6 +384,7 @@ function Playmat() {
     },
     {
       Color: "Blue",
+      Img: "card_img2",
       Points: 1,
       Tier: 2,
       Cost: {
@@ -363,6 +397,7 @@ function Playmat() {
     },
     {
       Color: "Blue",
+      Img: "card_img2",
       Points: 1,
       Tier: 2,
       Cost: {
@@ -375,6 +410,7 @@ function Playmat() {
     },
     {
       Color: "Blue",
+      Img: "card_img2",
       Points: 2,
       Tier: 2,
       Cost: {
@@ -387,6 +423,7 @@ function Playmat() {
     },
     {
       Color: "Blue",
+      Img: "card_img3",
       Points: 2,
       Tier: 2,
       Cost: {
@@ -399,6 +436,7 @@ function Playmat() {
     },
     {
       Color: "Blue",
+      Img: "card_img3",
       Points: 2,
       Tier: 2,
       Cost: {
@@ -411,6 +449,7 @@ function Playmat() {
     },
     {
       Color: "Blue",
+      Img: "card_img3",
       Points: 3,
       Tier: 2,
       Cost: {
@@ -423,6 +462,7 @@ function Playmat() {
     },
     {
       Color: "Blue",
+      Img: "card_img4",
       Points: 3,
       Tier: 3,
       Cost: {
@@ -435,6 +475,7 @@ function Playmat() {
     },
     {
       Color: "Blue",
+      Img: "card_img5",
       Points: 4,
       Tier: 3,
       Cost: {
@@ -447,6 +488,7 @@ function Playmat() {
     },
     {
       Color: "Blue",
+      Img: "card_img5",
       Points: 4,
       Tier: 3,
       Cost: {
@@ -459,6 +501,7 @@ function Playmat() {
     },
     {
       Color: "Blue",
+      Img: "card_img4",
       Points: 5,
       Tier: 3,
       Cost: {
@@ -471,6 +514,7 @@ function Playmat() {
     },
     {
       Color: "Green",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -483,6 +527,7 @@ function Playmat() {
     },
     {
       Color: "Green",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -495,6 +540,7 @@ function Playmat() {
     },
     {
       Color: "Green",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -507,6 +553,7 @@ function Playmat() {
     },
     {
       Color: "Green",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -519,6 +566,7 @@ function Playmat() {
     },
     {
       Color: "Green",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -531,6 +579,7 @@ function Playmat() {
     },
     {
       Color: "Green",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -543,6 +592,7 @@ function Playmat() {
     },
     {
       Color: "Green",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -555,6 +605,7 @@ function Playmat() {
     },
     {
       Color: "Green",
+      Img: "card_img1",
       Points: 1,
       Tier: 1,
       Cost: {
@@ -567,6 +618,7 @@ function Playmat() {
     },
     {
       Color: "Green",
+      Img: "card_img2",
       Points: 1,
       Tier: 2,
       Cost: {
@@ -579,6 +631,7 @@ function Playmat() {
     },
     {
       Color: "Green",
+      Img: "card_img2",
       Points: 1,
       Tier: 2,
       Cost: {
@@ -591,6 +644,7 @@ function Playmat() {
     },
     {
       Color: "Green",
+      Img: "card_img2",
       Points: 2,
       Tier: 2,
       Cost: {
@@ -603,6 +657,7 @@ function Playmat() {
     },
     {
       Color: "Green",
+      Img: "card_img3",
       Points: 2,
       Tier: 2,
       Cost: {
@@ -615,6 +670,7 @@ function Playmat() {
     },
     {
       Color: "Green",
+      Img: "card_img3",
       Points: 2,
       Tier: 2,
       Cost: {
@@ -627,6 +683,7 @@ function Playmat() {
     },
     {
       Color: "Green",
+      Img: "card_img3",
       Points: 3,
       Tier: 2,
       Cost: {
@@ -639,6 +696,7 @@ function Playmat() {
     },
     {
       Color: "Green",
+      Img: "card_img4",
       Points: 3,
       Tier: 3,
       Cost: {
@@ -651,6 +709,7 @@ function Playmat() {
     },
     {
       Color: "Green",
+      Img: "card_img5",
       Points: 4,
       Tier: 3,
       Cost: {
@@ -663,6 +722,7 @@ function Playmat() {
     },
     {
       Color: "Green",
+      Img: "card_img5",
       Points: 4,
       Tier: 3,
       Cost: {
@@ -675,6 +735,7 @@ function Playmat() {
     },
     {
       Color: "Green",
+      Img: "card_img4",
       Points: 5,
       Tier: 3,
       Cost: {
@@ -687,6 +748,7 @@ function Playmat() {
     },
     {
       Color: "Red",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -699,6 +761,7 @@ function Playmat() {
     },
     {
       Color: "Red",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -711,6 +774,7 @@ function Playmat() {
     },
     {
       Color: "Red",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -723,6 +787,7 @@ function Playmat() {
     },
     {
       Color: "Red",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -735,6 +800,7 @@ function Playmat() {
     },
     {
       Color: "Red",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -747,6 +813,7 @@ function Playmat() {
     },
     {
       Color: "Red",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -759,6 +826,7 @@ function Playmat() {
     },
     {
       Color: "Red",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -771,6 +839,7 @@ function Playmat() {
     },
     {
       Color: "Red",
+      Img: "card_img1",
       Points: 1,
       Tier: 1,
       Cost: {
@@ -783,6 +852,7 @@ function Playmat() {
     },
     {
       Color: "Red",
+      Img: "card_img2",
       Points: 1,
       Tier: 2,
       Cost: {
@@ -795,6 +865,7 @@ function Playmat() {
     },
     {
       Color: "Red",
+      Img: "card_img2",
       Points: 1,
       Tier: 2,
       Cost: {
@@ -807,6 +878,7 @@ function Playmat() {
     },
     {
       Color: "Red",
+      Img: "card_img2",
       Points: 2,
       Tier: 2,
       Cost: {
@@ -819,6 +891,7 @@ function Playmat() {
     },
     {
       Color: "Red",
+      Img: "card_img3",
       Points: 2,
       Tier: 2,
       Cost: {
@@ -831,6 +904,7 @@ function Playmat() {
     },
     {
       Color: "Red",
+      Img: "card_img3",
       Points: 2,
       Tier: 2,
       Cost: {
@@ -843,6 +917,7 @@ function Playmat() {
     },
     {
       Color: "Red",
+      Img: "card_img3",
       Points: 3,
       Tier: 2,
       Cost: {
@@ -855,6 +930,7 @@ function Playmat() {
     },
     {
       Color: "Red",
+      Img: "card_img4",
       Points: 3,
       Tier: 3,
       Cost: {
@@ -867,6 +943,7 @@ function Playmat() {
     },
     {
       Color: "Red",
+      Img: "card_img5",
       Points: 4,
       Tier: 3,
       Cost: {
@@ -879,6 +956,7 @@ function Playmat() {
     },
     {
       Color: "Red",
+      Img: "card_img5",
       Points: 4,
       Tier: 3,
       Cost: {
@@ -891,6 +969,7 @@ function Playmat() {
     },
     {
       Color: "Red",
+      Img: "card_img4",
       Points: 5,
       Tier: 3,
       Cost: {
@@ -903,6 +982,7 @@ function Playmat() {
     },
     {
       Color: "White",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -915,6 +995,7 @@ function Playmat() {
     },
     {
       Color: "White",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -927,6 +1008,7 @@ function Playmat() {
     },
     {
       Color: "White",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -939,6 +1021,7 @@ function Playmat() {
     },
     {
       Color: "White",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -951,6 +1034,7 @@ function Playmat() {
     },
     {
       Color: "White",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -963,6 +1047,7 @@ function Playmat() {
     },
     {
       Color: "White",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -975,6 +1060,7 @@ function Playmat() {
     },
     {
       Color: "White",
+      Img: "card_img1",
       Points: 0,
       Tier: 1,
       Cost: {
@@ -987,6 +1073,7 @@ function Playmat() {
     },
     {
       Color: "White",
+      Img: "card_img1",
       Points: 1,
       Tier: 1,
       Cost: {
@@ -999,6 +1086,7 @@ function Playmat() {
     },
     {
       Color: "White",
+      Img: "card_img2",
       Points: 1,
       Tier: 2,
       Cost: {
@@ -1011,6 +1099,7 @@ function Playmat() {
     },
     {
       Color: "White",
+      Img: "card_img2",
       Points: 1,
       Tier: 2,
       Cost: {
@@ -1023,6 +1112,7 @@ function Playmat() {
     },
     {
       Color: "White",
+      Img: "card_img2",
       Points: 2,
       Tier: 2,
       Cost: {
@@ -1035,6 +1125,7 @@ function Playmat() {
     },
     {
       Color: "White",
+      Img: "card_img3",
       Points: 2,
       Tier: 2,
       Cost: {
@@ -1047,6 +1138,7 @@ function Playmat() {
     },
     {
       Color: "White",
+      Img: "card_img3",
       Points: 2,
       Tier: 2,
       Cost: {
@@ -1059,6 +1151,7 @@ function Playmat() {
     },
     {
       Color: "White",
+      Img: "card_img3",
       Points: 3,
       Tier: 2,
       Cost: {
@@ -1071,6 +1164,7 @@ function Playmat() {
     },
     {
       Color: "White",
+      Img: "card_img4",
       Points: 3,
       Tier: 3,
       Cost: {
@@ -1083,6 +1177,7 @@ function Playmat() {
     },
     {
       Color: "White",
+      Img: "card_img5",
       Points: 4,
       Tier: 3,
       Cost: {
@@ -1095,6 +1190,7 @@ function Playmat() {
     },
     {
       Color: "White",
+      Img: "card_img5",
       Points: 4,
       Tier: 3,
       Cost: {
@@ -1107,6 +1203,7 @@ function Playmat() {
     },
     {
       Color: "White",
+      Img: "card_img4",
       Points: 5,
       Tier: 3,
       Cost: {
@@ -1121,36 +1218,57 @@ function Playmat() {
   const CardTier1 = [];
   const CardTier2 = [];
   const CardTier3 = [];
-
+  CardSet.forEach((el) => {
+    if (el.Tier === 1) {
+      CardTier1.push(el);
+    } else if (el.Tier === 2) {
+      CardTier2.push(el);
+    } else if (el.Tier === 3) {
+      CardTier3.push(el);
+    }
+  });
   useEffect(() => {
-    CardSet.forEach((el) => {
-      if (el.Tier === 1) {
-        CardTier1.push(el);
-      } else if (el.Tier === 2) {
-        CardTier2.push(el);
-      } else if (el.Tier === 3) {
-        CardTier3.push(el);
-      }
-    });
-    CardTier1.sort(() => Math.random() - 0.5);
-    CardTier2.sort(() => Math.random() - 0.5);
-    CardTier3.sort(() => Math.random() - 0.5);
-
-    setTopTier2(CardTier2.pop());
-    setTopTier3(CardTier3.pop());
+    shuffle(CardTier1);
+    shuffle(CardTier2);
+    shuffle(CardTier3);
+    setTier1([
+      CardTier1.pop(),
+      CardTier1.pop(),
+      CardTier1.pop(),
+      CardTier1.pop(),
+    ]);
+    setTier2([
+      CardTier2.pop(),
+      CardTier2.pop(),
+      CardTier2.pop(),
+      CardTier2.pop(),
+    ]);
+    setTier3([
+      CardTier3.pop(),
+      CardTier3.pop(),
+      CardTier3.pop(),
+      CardTier3.pop(),
+    ]);
   }, []);
 
   useEffect(() => {
-    if (tier1Count < 4 && CardTier1.length !== 0) {
-      setTopTier1(CardTier1.pop());
-      
-      setTier1Count((cur) => (cur += 1));
+    if (tier1.length < 4 && CardTier1.length > 0) {
+      setTier1((cur) => [...cur, CardTier1.pop()]);
     }
-  }, [tier1Count]);
+  }, [tier1.length]);
 
-  const consolLog = () => {
-    console.log(topTier1);
-  };
+  useEffect(() => {
+    if (tier2.length < 4 && CardTier2.length > 0) {
+      setTier2((cur) => [...cur, CardTier2.pop()]);
+    }
+  }, [tier2.length]);
+
+  useEffect(() => {
+    if (tier3.length < 4 && CardTier3.length > 0) {
+      setTier3((cur) => [...cur, CardTier3.pop()]);
+    }
+  }, [tier3.length]);
+
   return (
     <>
       <Container>
@@ -1160,42 +1278,26 @@ function Playmat() {
           <Noble color="blue" />
         </Nobles>
         <Cards>
-          <Row>
-            <Card className="card back_1" enable={false} />
-            <Card className="card" enable={true}>
-              <Header></Header>
-            </Card>
-            <Card className="card" enable={true}>
-              <Header></Header>
-            </Card>
-            <Card className="card" enable={true}>
-              <Header></Header>
-            </Card>
-            <button onClick={consolLog}>Draw</button>
+          <Row id="row_1">
+            {CardTier1.length > 0 ? <Back className="card back_1" /> : null}
+            {tier1[0] ? <Card object={tier1[0]} /> : null}
+            {tier1[1] ? <Card object={tier1[1]} /> : null}
+            {tier1[2] ? <Card object={tier1[2]} /> : null}
+            {tier1[3] ? <Card object={tier1[3]} /> : null}
           </Row>
-          <Row>
-            <Card className="card back_2" enable={false} />
-            <Card className="card" enable={true}>
-              <Header></Header>
-            </Card>
-            <Card className="card" enable={true}>
-              <Header></Header>
-            </Card>
-            <Card className="card" enable={true}>
-              <Header></Header>
-            </Card>
+          <Row id="row_2">
+            {CardTier2.length > 0 ? <Back className="card back_2" /> : null}
+            {tier2[0] ? <Card object={tier2[0]} /> : null}
+            {tier2[1] ? <Card object={tier2[1]} /> : null}
+            {tier2[2] ? <Card object={tier2[2]} /> : null}
+            {tier2[3] ? <Card object={tier2[3]} /> : null}
           </Row>
-          <Row>
-            <Card className="card back_3" enable={false} />
-            <Card className="card" enable={true}>
-              <Header></Header>
-            </Card>
-            <Card className="card" enable={true}>
-              <Header></Header>
-            </Card>
-            <Card className="card" enable={true}>
-              <Header></Header>
-            </Card>
+          <Row id="row_3">
+            {CardTier3.length > 0 ? <Back className="card back_3" /> : null}
+            {tier3[0] ? <Card object={tier3[0]} /> : null}
+            {tier3[1] ? <Card object={tier3[1]} /> : null}
+            {tier3[2] ? <Card object={tier3[2]} /> : null}
+            {tier3[3] ? <Card object={tier3[3]} /> : null}
           </Row>
         </Cards>
       </Container>

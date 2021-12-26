@@ -1,8 +1,50 @@
 .card {
+  position: relative;
   width: 120px;
   height: 160px;
   background-image: url("../images/cards.jpg");
   background-size: 500% 600%;
+  border-radius: 5px;
+  margin: 10px;
+  border: 2.5px solid whitesmoke;
+}
+
+.point {
+  grid-area: point;
+}
+
+.no {
+  grid-area: no;
+  background-color: blueviolet;
+}
+
+.gem {
+  grid-area: gem;
+  background-size: 500% 100%;
+  background-image: url(../images/gems.png);
+  width: 40px;
+  height: 35px;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  padding: 10px;
+  /* position: absolute; */
+}
+
+.gem_Black {
+  background-position-x: -200%;
+}
+.gem_Green {
+  background-position-x: -400%;
+}
+.gem_Red {
+  background-position-x: -300%;
+}
+.gem_Blue {
+  background-position-x: -100%;
+}
+.gem_White {
+  background-position-x: 0%;
 }
 
 .back_1 {
@@ -17,21 +59,37 @@
   background-position: -200% -500%;
 }
 
-.type_R {
+.type_Red {
   background-position-y: -200%;
 }
 
-.type_E {
+.type_Green {
   background-position-y: -300%;
 }
 
-.type_R {
-  background-position-y: -200%;
+.type_Black {
+  background-position-y: -100%;
 }
 
-.type_R {
-  background-position-y: -200%;
+.type_White {
+  background-position-y: -400%;
 }
-.type_R {
-  background-position-y: -200%;
+.type_Blue {
+  background-position-y: 0%;
+}
+
+.card_img1 {
+  background-position-x: 0%;
+}
+.card_img2 {
+  background-position-x: -100%;
+}
+.card_img3 {
+  background-position-x: -200%;
+}
+.card_img4 {
+  background-position-x: -300%;
+}
+.card_img5 {
+  background-position-x: -400%;
 }
